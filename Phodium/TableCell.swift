@@ -11,6 +11,11 @@ import UIKit
 
 class TableCell: UITableViewCell {
     
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var cellImage: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var tagLabel: UILabel!
+    
     var cellContent: CellContent! {
         didSet {
             self.updateUI()
@@ -19,10 +24,15 @@ class TableCell: UITableViewCell {
     
     func updateUI()
     {
-       
+        
         nameLabel.text = cellContent.name
         descriptionLabel.text = cellContent.description
-        tagLabel.text = "\(cellContent.hashtags)"
+        
+        let tags = cellContent.hashtags.prettyPrinted
+        
+        tagLabel.text = tags
+        
+        
         
         let imageURL = cellContent.imageURL
         let networkService = NetworkService(url: imageURL!)
@@ -33,11 +43,13 @@ class TableCell: UITableViewCell {
             })
         }
         
+        
     }
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var cellImage: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var tagLabel: UILabel!
-    
+}
+
+extension CollectionType where Generator.Element == String {
+    var prettyPrinted: String {
+        return self.joinWithSeparator(", ")
+    }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		930B643C1D79873900946012 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930B643B1D79873900946012 /* MenuVC.swift */; };
+		930B643E1D79887400946012 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930B643D1D79887400946012 /* MenuCell.swift */; };
 		93429E5E1D76E11B00C77C05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93429E5D1D76E11B00C77C05 /* AppDelegate.swift */; };
 		93429E601D76E11B00C77C05 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93429E5F1D76E11B00C77C05 /* ViewController.swift */; };
 		93429E631D76E11B00C77C05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93429E611D76E11B00C77C05 /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		930B643B1D79873900946012 /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		930B643D1D79887400946012 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		93429E5A1D76E11B00C77C05 /* Phodium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Phodium.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93429E5D1D76E11B00C77C05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93429E5F1D76E11B00C77C05 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +72,8 @@
 				93429E5D1D76E11B00C77C05 /* AppDelegate.swift */,
 				93429E5F1D76E11B00C77C05 /* ViewController.swift */,
 				93429E611D76E11B00C77C05 /* Main.storyboard */,
+				930B643B1D79873900946012 /* MenuVC.swift */,
+				930B643D1D79887400946012 /* MenuCell.swift */,
 				93429E741D76EEA900C77C05 /* TableViewVC.swift */,
 				93429E7F1D788C7700C77C05 /* PhotoAwards.json */,
 				93429E7B1D787F1C00C77C05 /* CellContent.swift */,
@@ -155,8 +161,10 @@
 				93429E751D76EEA900C77C05 /* TableViewVC.swift in Sources */,
 				93429E601D76E11B00C77C05 /* ViewController.swift in Sources */,
 				93429E7C1D787F1C00C77C05 /* CellContent.swift in Sources */,
+				930B643C1D79873900946012 /* MenuVC.swift in Sources */,
 				93429E771D76EF6500C77C05 /* TableCell.swift in Sources */,
 				93429E7E1D7887C000C77C05 /* NetworkService.swift in Sources */,
+				930B643E1D79887400946012 /* MenuCell.swift in Sources */,
 				93429E5E1D76E11B00C77C05 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +317,7 @@
 				93429E6E1D76E11B00C77C05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -11,7 +11,7 @@ import Foundation
 class CellContent {
     var name: String?
     var description: String?
-    var hashtags: [String]?
+    var hashtags: [String]
     var imageURL: NSURL?
     var url: NSURL?
     
@@ -25,7 +25,7 @@ class CellContent {
     init(file: [String : AnyObject]){
         self.name = file["name"] as? String
         description = file["description"] as? String
-        hashtags = file["tags"] as? [String]
+        hashtags = file["tags"] as! [String]
         imageURL = NSURL(string: file["url"] as! String)
         
     }
@@ -45,6 +45,7 @@ class CellContent {
                 let newFile = CellContent(file: file)
                 cells.append(newFile)
             }
+            
         }
         
         return cells

@@ -11,13 +11,14 @@ import UIKit
 
 class TableViewVC: UITableViewController {
     
-    var names: [String] = []
-    
     var cellContents = [CellContent]()
 
     
     override func viewDidLoad() {
-        names = ["Firasdljasdjlnadjnlasdljnst"]
+        
+        //Cell is dynamic
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
         
         cellContents = CellContent.downloadCells()
         self.tableView.reloadData()
