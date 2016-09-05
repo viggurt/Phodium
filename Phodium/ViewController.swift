@@ -32,6 +32,7 @@ class ViewController: UIViewController {
         
         
         
+        
         let imageURL = chosenObject!.imageURL
         let networkService = NetworkService(url: imageURL!)
         networkService.downloadImage { (imageData) in
@@ -49,7 +50,7 @@ class ViewController: UIViewController {
         let imageView = sender.view as! UIImageView
         let newImageView = UIImageView(image: imageView.image)
         newImageView.frame = self.view.frame
-        newImageView.backgroundColor = .blackColor()
+        newImageView.backgroundColor = .whiteColor()
         newImageView.contentMode = .ScaleAspectFit
         newImageView.userInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: "dismissFullscreenImage:")

@@ -17,6 +17,9 @@ class MenuVC: UITableViewController {
     override func viewDidLoad() {
         items = CellContent.downloadCells()
         self.tableView.reloadData()
+        
+        
+        
     }
     
     
@@ -29,8 +32,7 @@ class MenuVC: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("CellMenu", forIndexPath: indexPath) as! MenuCell
         let content = self.items[indexPath.row]
 
-        cell.cellContent = content
-        
+        cell.cellContent = content        
         
         return cell
     }
@@ -52,4 +54,11 @@ class MenuVC: UITableViewController {
         
         }
     }
+    
+    @IBAction func sortBy(sender: AnyObject) {
+        items.sortInPlace({$0.name < $1.name})
+        self.tableView.reloadData()
+    }
+    
 }
+

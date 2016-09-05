@@ -19,6 +19,8 @@
 		93429E7C1D787F1C00C77C05 /* CellContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93429E7B1D787F1C00C77C05 /* CellContent.swift */; };
 		93429E7E1D7887C000C77C05 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93429E7D1D7887C000C77C05 /* NetworkService.swift */; };
 		93429E801D788C7700C77C05 /* PhotoAwards.json in Resources */ = {isa = PBXBuildFile; fileRef = 93429E7F1D788C7700C77C05 /* PhotoAwards.json */; };
+		93D3D1301D7E15B9001D8703 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D3D12F1D7E15B9001D8703 /* Settings.swift */; };
+		93D3D1321D7E16B3001D8703 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D3D1311D7E16B3001D8703 /* PostService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		93429E7B1D787F1C00C77C05 /* CellContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellContent.swift; path = ../CellContent.swift; sourceTree = "<group>"; };
 		93429E7D1D7887C000C77C05 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		93429E7F1D788C7700C77C05 /* PhotoAwards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PhotoAwards.json; sourceTree = "<group>"; };
+		93D3D12F1D7E15B9001D8703 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		93D3D1311D7E16B3001D8703 /* PostService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostService.swift; path = Phodium/PostService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				93429E7D1D7887C000C77C05 /* NetworkService.swift */,
+				93D3D12F1D7E15B9001D8703 /* Settings.swift */,
+				93D3D1311D7E16B3001D8703 /* PostService.swift */,
 				93429E5C1D76E11B00C77C05 /* Phodium */,
 				93429E5B1D76E11B00C77C05 /* Products */,
 			);
@@ -163,7 +169,9 @@
 				93429E7C1D787F1C00C77C05 /* CellContent.swift in Sources */,
 				930B643C1D79873900946012 /* MenuVC.swift in Sources */,
 				93429E771D76EF6500C77C05 /* TableCell.swift in Sources */,
+				93D3D1321D7E16B3001D8703 /* PostService.swift in Sources */,
 				93429E7E1D7887C000C77C05 /* NetworkService.swift in Sources */,
+				93D3D1301D7E15B9001D8703 /* Settings.swift in Sources */,
 				930B643E1D79887400946012 /* MenuCell.swift in Sources */,
 				93429E5E1D76E11B00C77C05 /* AppDelegate.swift in Sources */,
 			);
