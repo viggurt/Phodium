@@ -10,23 +10,61 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var url: String = "https://static.mobileinteraction.se/developertest/wordpressphotoawards.json"
+    @IBOutlet weak var objectTitle: UILabel!
+    @IBOutlet weak var objectImage: UIImageView!
+    @IBOutlet weak var objectDescription: UILabel!
+    @IBOutlet weak var objectTags: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
     
-    var names: [String] = []
-
+    var chosenObject: CellContent?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        names = ["Kalle", "Viktor", "Matte", "balle"]
+        
+        scrollView.contentSize.height = 1000
+        
+        objectTitle.text = chosenObject?.name
+        objectDescription.text = chosenObject?.description
+        
+        let tags = chosenObject!.hashtags.prettyPrinted
+        
+        objectTags.text = tags
+        
+        
+        
+        let imageURL = chosenObject!.imageURL
+        let networkService = NetworkService(url: imageURL!)
+        networkService.downloadImage { (imageData) in
+            let image = UIImage(data: imageData)
+            dispatch_async(dispatch_get_main_queue(), {
+                self.objectImage.image = image
+            })
+        }
+
+        
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func imageTapped(sender: UITapGestureRecognizer) {
+        let imageView = sender.view as! UIImageView
+        let newImageView = UIImageView(image: imageView.image)
+        newImageView.frame = self.view.frame
+        newImageView.backgroundColor = .blackColor()
+        newImageView.contentMode = .ScaleAspectFit
+        newImageView.userInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: "dismissFullscreenImage:")
+        newImageView.addGestureRecognizer(tap)
+        self.view.addSubview(newImageView)
     }
-
     
+    func dismissFullscreenImage(sender: UITapGestureRecognizer) {
+        sender.view?.removeFromSuperview()
+    }
+}
 
-
+extension CollectionType where Generator.Element == String {
+    var prettyPrinted: String {
+        return self.joinWithSeparator(", ")
+    }
 }
 

@@ -38,4 +38,18 @@ class MenuVC: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         chosenObject = indexPath.row
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowObject" {
+            
+            let VC = segue.destinationViewController as? ViewController
+            
+            if let cell = sender as? UITableViewCell {
+                if let indexPath = tableView.indexPathForCell(cell){
+                    VC?.chosenObject = items[indexPath.row]
+                }
+            }
+        
+        }
+    }
 }

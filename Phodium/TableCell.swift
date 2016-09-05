@@ -47,9 +47,3 @@ class TableCell: UITableViewCell {
     }
     
 }
-
-extension CollectionType where Generator.Element == String {
-    var prettyPrinted: String {
-        return self.joinWithSeparator(", ")
-    }
-}
