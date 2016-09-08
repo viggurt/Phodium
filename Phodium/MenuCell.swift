@@ -25,7 +25,6 @@ class MenuCell: UITableViewCell {
         
         title.text = cellContent.name
         
-        
         let imageURL = cellContent.imageURL
         let networkService = NetworkService(url: imageURL!)
         networkService.downloadImage { (imageData) in
