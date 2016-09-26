@@ -112,6 +112,7 @@
 					93429E591D76E11B00C77C05 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = UC677ZFV39;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -279,6 +280,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = se.viggurt.Phodium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -293,6 +295,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = se.viggurt.Phodium;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

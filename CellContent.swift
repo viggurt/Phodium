@@ -12,21 +12,23 @@ class CellContent {
     var name: String?
     var description: String?
     var hashtags: [String]
-    var imageURL: NSURL?
-    var url: NSURL?
+    var imageURL: URL?
+    var url: URL?
     
-    init(name: String, description: String, hashtags: [String], imageURL: NSURL){
+    init(name: String, description: String, hashtags: [String], imageURL: URL){
         self.name = name
         self.description = description
         self.hashtags = hashtags
         self.imageURL = imageURL
     }
     
+    
+    
     init(file: [String : AnyObject]){
         self.name = file["name"] as? String
         description = file["description"] as? String
         hashtags = file["tags"] as! [String]
-        imageURL = NSURL(string: file["url"] as! String)
+        imageURL = URL(string: file["url"] as! String)
         
     }
     

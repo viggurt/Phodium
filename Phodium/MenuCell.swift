@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+//Class from Youtube video: "https://www.youtube.com/watch?v=Lx-uvyXl87c , Duc Tran"
 class MenuCell: UITableViewCell {
     
     @IBOutlet weak var title: UILabel!
@@ -28,8 +28,8 @@ class MenuCell: UITableViewCell {
         let imageURL = cellContent.imageURL
         let networkService = NetworkService(url: imageURL!)
         networkService.downloadImage { (imageData) in
-            let image = UIImage(data: imageData)
-            dispatch_async(dispatch_get_main_queue(), {
+            let image = UIImage(data: imageData as Data)
+            DispatchQueue.main.async(execute: {
                 self.menuImage.image = image
             })
         }
