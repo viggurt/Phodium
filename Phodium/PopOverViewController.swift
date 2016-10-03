@@ -19,22 +19,19 @@ class PopOverViewController: UIViewController, UITableViewDataSource, UITableVie
     var popCell = PopCell()
     var allTags : [String] = []
     var filterTags = Singleton.sharedInstance.filterByTags
-
     var cellTapped: Bool = false
     var currentRow: Int = 0
-    
     
     //MARK: Outlets
     @IBOutlet weak var sortingTableView: UITableView!
     @IBOutlet weak var filteringTableView: UITableView!
 
-    
     //MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         sortingObjects = ["Name"]
-        filteringObjects = ["PEOPLE", "WORLD", "SURVIVORS", "EU", "AFRICA", "EUROPE", "NATURE"]
+        filteringObjects = Singleton.sharedInstance.filteringObjects
         
         sortingTableView.delegate = self
         sortingTableView.dataSource = self
@@ -44,12 +41,9 @@ class PopOverViewController: UIViewController, UITableViewDataSource, UITableVie
         if Singleton.sharedInstance.filterOrder == true {
             popCell.sortingDirection?.text? = "Z-A"
         }else if Singleton.sharedInstance.filterOrder == false{
-            popCell.sortingDirection?.text? = "A-Z"            
+            popCell.sortingDirection?.text? = "A-Z"
         }
-        
-        print(Singleton.sharedInstance.filterByTags)
-        
-        
+        sortingTableView.reloadData()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -59,28 +53,16 @@ class PopOverViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(true)
-        
     }
    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    /*func filterContent(tagText: String, scope: String = "All") {
-     filteredCandies = candies.filter { candy in
-     let categoryMatch = (scope == "All") || (candy.category == scope)
-     return  categoryMatch && candy.name.lowercaseString.containsString(searchText.lowercaseString)
-     }
-     
-     tableView.reloadData()
-     }*/
-    
+
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         filteringObjects = filteringObjects.filter { posts in
             return posts.lowercaseString.containsString(searchText.lowercaseString)
         }
-        
     }
     
     //MARK: TableView Functions
@@ -98,18 +80,16 @@ class PopOverViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         var cell: UITableViewCell!
         
+        //Sorting
         if tableView == self.sortingTableView{
             let sCell = tableView.dequeueReusableCellWithIdentifier("sortingCell", forIndexPath: indexPath) as! PopCell
             cell = sCell
-        let content = self.sortingObjects[indexPath.row]
-
-        sCell.sortingText.text = content
-            //sortingCell.sortingDirection.text = "From top"
-        
+            let content = self.sortingObjects[indexPath.row]
+            sCell.sortingText.text = content
         }
+        //Filtering
         else if tableView == self.filteringTableView{
             let fCell = tableView.dequeueReusableCellWithIdentifier("filteringCell", forIndexPath: indexPath) as! FilterCell
             cell = fCell
@@ -125,74 +105,52 @@ class PopOverViewController: UIViewController, UITableViewDataSource, UITableVie
 
             fCell.filterText.text = content
             fCell.filterChoice.hidden = !isSelected
-
         }
         return cell
     }
  
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        //Sorting
         if tableView == self.sortingTableView{
             let sortingCell = tableView.cellForRowAtIndexPath(indexPath) as! PopCell
-            
             sortingCell.sortingDirection.text = "A-Z"
-            
             if Singleton.sharedInstance.filterOrder == true {
              sortingCell.sortingDirection.text = "Z-A"
-                
                 Singleton.sharedInstance.filterOrder = false
                 //filteredPosts.sortInPlace({$0.name > $1.name})
                 //NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
-                
                 NSNotificationCenter.defaultCenter().postNotificationName("reload_data", object:self)
-
             }
             else if Singleton.sharedInstance.filterOrder == false {
              sortingCell.sortingDirection.text = "A-Z"
                 Singleton.sharedInstance.filterOrder = true
                 //filteredPosts.sortInPlace({$0.name < $1.name})
                 //NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
-                
                 NSNotificationCenter.defaultCenter().postNotificationName("reload_data", object:self)
-
              }
 
             tableView.reloadData()
             print(Singleton.sharedInstance.filterOrder)
 
         }
+        //Filtering
         else if tableView == self.filteringTableView{
-            
-            //filterOnOrOff
-            //let filterCell = tableView.cellForRowAtIndexPath(indexPath) as! FilterCell
-            
             let row = indexPath.row
             let tag = self.filteringObjects[indexPath.row]
 
-            
             if Singleton.sharedInstance.filterOnOrOff[row] == false{
                 Singleton.sharedInstance.filterOnOrOff[row] = true
                 Singleton.sharedInstance.filterByTags.append(tag)
                 print(Singleton.sharedInstance.filterByTags)
-                
             }
             else if Singleton.sharedInstance.filterOnOrOff[row] == true{
                 Singleton.sharedInstance.filterOnOrOff[row] = false
                 let tagFilter = Singleton.sharedInstance.filterByTags.filter({$0 != tag})
                 Singleton.sharedInstance.filterByTags = tagFilter
                 print(Singleton.sharedInstance.filterByTags)
-                
             }
-            
-            //filterCell.filterChoice.hidden = !filterCell.filterChoice.hidden
-            
-            
-            //let selectedRowIndex = indexPath
-            //currentRow = selectedRowIndex.row
             tableView.reloadData()
-           
         }
-
     }
     
     //MARK: Actions
@@ -200,12 +158,5 @@ class PopOverViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func closeButton(sender: AnyObject) {
         self.performSegueWithIdentifier("unwindSecondView", sender: self)
     }
-    
-    
-    
-    
-    
-    
 
-    
 }

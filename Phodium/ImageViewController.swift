@@ -24,6 +24,16 @@ class ImageViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
- 
 
+    @IBAction func toggle(sender: AnyObject) {
+    navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+    return navigationController?.navigationBarHidden == true
+    }
+    
+    override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {
+    return UIStatusBarAnimation.Slide
+    }
 }

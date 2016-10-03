@@ -54,52 +54,21 @@ class CellContent {
             }
             
             // Read the JSON
-            do {
-                if let ipString = NSString(data:data!, encoding: NSUTF8StringEncoding) {
-                    // Print what we got from the call
-                    
+            do {                    
                     // Parse the JSON to get the IP
                     let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                     if let files = jsonDictionary["files"] as? [[String: AnyObject]]{
                         for file in files {
                             let newFile = CellContent(file: file)
                             cells.append(newFile)
-                            
-                            
-/*for cell in cells{
- for tag in cell.tags
- {
- if !self.allTags.contains(tag)
- {
- self.allTags.append(tag)
- }
- }
- 
- }*/
-/*if var tags = file["tags"] as? [String]{
- for tag in tags{
- let people = "People"
- tag = people
- 
- }
- }*/
-                            
                         }
                         dispatch_async(dispatch_get_main_queue()){
                             completion(cells: cells)
                         }
- 
                     }
-/* dispatch_async(dispatch_get_main_queue()){
- tableView.reloadData()
- }*/
-                }
-            }
- 
-            catch {
+            }catch {
                 print("bad things happened")
             }
         }).resume()
     }
-    
 }

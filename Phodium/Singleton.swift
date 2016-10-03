@@ -18,4 +18,6 @@ class Singleton {
     var filterOnOrOff = [false, false, false, false, false, false, false]
     
     var filteredCells = [CellContent]()
+    
+    var filteringObjects: [String] = []
 }
