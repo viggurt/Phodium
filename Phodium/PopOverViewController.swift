@@ -43,6 +43,8 @@ class PopOverViewController: UIViewController, UITableViewDataSource, UITableVie
         }else if Singleton.sharedInstance.filterOrder == false{
             popCell.sortingDirection?.text? = "A-Z"
         }
+        
+        print(Singleton.sharedInstance.filteringObjects)
         sortingTableView.reloadData()
     }
     

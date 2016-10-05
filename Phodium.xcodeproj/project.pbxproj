@@ -22,6 +22,7 @@
 		93D9B1DA1D93D95C0004A369 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D9B1D91D93D95C0004A369 /* ImageViewController.swift */; };
 		93E768911D9408D100E693DF /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E768901D9408D100E693DF /* PopOverViewController.swift */; };
 		93E768931D94142700E693DF /* PopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E768921D94142700E693DF /* PopCell.swift */; };
+		93EB46811DA27CE200DB3F09 /* Filtering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EB46801DA27CE200DB3F09 /* Filtering.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		93D9B1D91D93D95C0004A369 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		93E768901D9408D100E693DF /* PopOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
 		93E768921D94142700E693DF /* PopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopCell.swift; sourceTree = "<group>"; };
+		93EB46801DA27CE200DB3F09 /* Filtering.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filtering.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			children = (
 				93429E5F1D76E11B00C77C05 /* ViewController.swift */,
 				930B643B1D79873900946012 /* MenuVC.swift */,
+				93EB46801DA27CE200DB3F09 /* Filtering.swift */,
 				93D9B1D91D93D95C0004A369 /* ImageViewController.swift */,
 				93E768901D9408D100E693DF /* PopOverViewController.swift */,
 			);
@@ -202,6 +205,7 @@
 				93429E7E1D7887C000C77C05 /* NetworkService.swift in Sources */,
 				930B643E1D79887400946012 /* MenuCell.swift in Sources */,
 				93429E5E1D76E11B00C77C05 /* AppDelegate.swift in Sources */,
+				93EB46811DA27CE200DB3F09 /* Filtering.swift in Sources */,
 				93D3D2821D9526AD0027F0F2 /* FilterCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

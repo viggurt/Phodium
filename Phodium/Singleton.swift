@@ -20,4 +20,6 @@ class Singleton {
     var filteredCells = [CellContent]()
     
     var filteringObjects: [String] = []
+    
+    var allCells = [CellContent]()
 }

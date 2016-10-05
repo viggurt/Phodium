@@ -11,11 +11,10 @@ import UIKit
 
 class MenuVC: UITableViewController, UIPopoverPresentationControllerDelegate {
     
-    var items = [CellContent]()
     var cell = CellContent?()
     var chosenObject = 0
     let VC: MenuVC? = nil
-    var filteredCells = Singleton.sharedInstance.filteredCells
+    var filtering: Filtering?
     
     @IBOutlet var menuTableView: UITableView!
     @IBAction func unwindSecondView(segue: UIStoryboardSegue){
@@ -23,30 +22,15 @@ class MenuVC: UITableViewController, UIPopoverPresentationControllerDelegate {
         print(Singleton.sharedInstance.filterByTags)
         //Sorting Order
         if Singleton.sharedInstance.filterOrder == true {
-            items.sortInPlace({$0.name < $1.name})
+            Singleton.sharedInstance.allCells.sortInPlace({$0.name < $1.name})
         }else if Singleton.sharedInstance.filterOrder == false{
-            items.sortInPlace({$0.name > $1.name})
+            Singleton.sharedInstance.allCells.sortInPlace({$0.name > $1.name})
         }
         
-        filteredCells.removeAll()
+        Singleton.sharedInstance.filteredCells.removeAll()
         
         //Filter Sorting
-        for cells in items{
-            let hashtags = cells.hashtags
-            for tag in hashtags{
-                
-                if Singleton.sharedInstance.filterByTags.contains(tag) == cells.hashtags.contains(tag)
-                {
-                    if filteredCells.contains ({return $0.name! as String == cells.name!}) {
-                        filteredCells.filter({$0.name == cells.name!})
-                    }
-                    else{
-                        filteredCells.append(cells)
-                    }
-                }
-            }
-        }
-        
+        Filtering.checkTheCell()
         tableView.reloadData()
     }
     
@@ -54,30 +38,25 @@ class MenuVC: UITableViewController, UIPopoverPresentationControllerDelegate {
         super.viewDidLoad()
         
         CellContent.downloadCells { (cells) in
-            self.items = cells
-            print(self.items)
-            
-            for cells in self.items{
-                let hashtags = cells.hashtags
-                for tag in hashtags{
-                    if !Singleton.sharedInstance.filteringObjects.contains(tag){
-                        Singleton.sharedInstance.filteringObjects.append(tag)
-                    }
-                }
-            }
+            Singleton.sharedInstance.allCells = cells
+            print(Singleton.sharedInstance.allCells)
+            Filtering.sortByTags()
             self.tableView.reloadData()
+
         }
+        
+
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         var count: Int
         
-        if filteredCells.isEmpty{
-            count = items.count
+        if Singleton.sharedInstance.filteredCells.isEmpty{
+            count = Singleton.sharedInstance.allCells.count
         }
         else{
-            count = filteredCells.count
+            count = Singleton.sharedInstance.filteredCells.count
         }
         return count
     }
@@ -85,12 +64,12 @@ class MenuVC: UITableViewController, UIPopoverPresentationControllerDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CellMenu", forIndexPath: indexPath) as! MenuCell
         
-        if filteredCells.isEmpty{
-            let content = self.items[indexPath.row]
+        if Singleton.sharedInstance.filteredCells.isEmpty{
+            let content = Singleton.sharedInstance.allCells[indexPath.row]
             cell.cellContent = content
         }
         else{
-            let content = self.filteredCells[indexPath.row]
+            let content = Singleton.sharedInstance.filteredCells[indexPath.row]
             cell.cellContent = content
         }
         
@@ -106,17 +85,17 @@ class MenuVC: UITableViewController, UIPopoverPresentationControllerDelegate {
             
             let VC = segue.destinationViewController as? ViewController
             
-            if filteredCells.isEmpty{
+            if Singleton.sharedInstance.filteredCells.isEmpty{
                 if let cell = sender as? UITableViewCell {
                     if let indexPath = tableView.indexPathForCell(cell){
-                        VC?.chosenObject = items[indexPath.row]
+                        VC?.chosenObject = Singleton.sharedInstance.allCells[indexPath.row]
                     }
                 }
             }
             else{
                 if let cell = sender as? UITableViewCell {
                     if let indexPath = tableView.indexPathForCell(cell){
-                        VC?.chosenObject = filteredCells[indexPath.row]
+                        VC?.chosenObject = Singleton.sharedInstance.filteredCells[indexPath.row]
                     }
                 }
             }

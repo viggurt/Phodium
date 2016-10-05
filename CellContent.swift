@@ -8,8 +8,12 @@
 
 import Foundation
 
-//Class from Youtube video: "https://www.youtube.com/watch?v=Lx-uvyXl87c , Duc Tran"
-class CellContent {
+func == (lhs: CellContent,rhs: CellContent) ->Bool{
+    return lhs.name == rhs.name && lhs.description == rhs.description && lhs.url == rhs.url
+}
+
+//Class from Youtube video: "https://www.youtube.com/watch?v=Lx-uvyXl87c , Duc Tran
+class CellContent: Equatable {
     var name: String?
     var description: String?
     var hashtags: [String]
@@ -32,10 +36,7 @@ class CellContent {
         imageURL = NSURL(string: file["url"] as! String)
         
     }
-    
-    static func getTags(){
-    }
-    
+
     static func downloadCells(completion: (cells: [CellContent]) ->()) -> Void{
         
         let postEndPoint: String = "https://static.mobileinteraction.se/developertest/wordpressphotoawards.json"
@@ -72,3 +73,4 @@ class CellContent {
         }).resume()
     }
 }
+
